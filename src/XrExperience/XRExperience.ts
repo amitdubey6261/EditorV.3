@@ -52,6 +52,8 @@ class XRExperience extends EventEmitter {
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
 
+        // console.log( this.resources.items.michelle.scene )
+
         document.body.appendChild(ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }));
 
         this.init();
@@ -60,14 +62,15 @@ class XRExperience extends EventEmitter {
     }
 
     init() {
-        const geometry = new THREE.CylinderGeometry(0.1, 0.1, 0.2, 32).translate(0, 0.1, 0);
+        // const geometry = new THREE.CylinderGeometry(0.1, 0.1, 0.2, 32).translate(0, 0.1, 0);
         const onSelect = () => {
             if (this.reticle.visible) {
-                const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
-                const mesh = new THREE.Mesh(geometry, material);
-                this.reticle.matrix.decompose(mesh.position, mesh.quaternion, mesh.scale);
-                mesh.scale.y = Math.random() * 2 + 1;
-                this.scene.add(mesh);
+                const model = this.resources.items.michelle.scene ; 
+                // const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
+                // const mesh = new THREE.Mesh(geometry, material);
+                this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
+                // mesh.scale.y = Math.random() * 2 + 1;
+                this.scene.add(model.clone());
             }
         }
 
@@ -89,7 +92,7 @@ class XRExperience extends EventEmitter {
     animate() {
 
         const render = (timeStamp: number, frame: XRFrame) => {
-            console.warn(timeStamp);
+            // console.warn(timeStamp);
 
             if (frame) {
                 const referenceSpace = this.renderer.xr.getReferenceSpace();
