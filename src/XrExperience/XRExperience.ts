@@ -34,7 +34,7 @@ class XRExperience extends EventEmitter {
 
         this.hitTestSource = null ; 
         this.hitTestSourceRequested = false ;   
-        this.setTControls() ; 
+        // this.setTControls() ; 
         this.setRenderer();
     }
 
@@ -86,10 +86,28 @@ class XRExperience extends EventEmitter {
     init() {
         const onSelect = () => {
             if (this.reticle.visible) {
-                const model = this.resources.items.michelle.scene ;
+
+                const tControls = new TransformControls( this.camera.perspectiveCamera , this.canvas ); 
+                window.addEventListener('keydown' , (e)=>{
+                    switch( e.code ){
+                        case 'keyG':
+                            tControls.setMode('translate');
+                            break ; 
+                        case 'KeyR':
+                            tControls.setMode('rotate');
+                            break ; 
+                        case 'KeyS':
+                            tControls.setMode('scale') ; 
+                            break ; 
+                    }
+                })
+        
+                const model = this.resources.items.michelle.scene ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 model.scale.y = Math.random() * 2 + 1;
-                this.scene.add(model);
+                tControls.attach(model)
+                this.scene.add(model)
+                this.scene.add(tControls)
             }
         }
 
