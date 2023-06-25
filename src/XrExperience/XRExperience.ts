@@ -62,6 +62,7 @@ class XRExperience extends EventEmitter {
     animate(){
 
         const render = ( timestamp: any , frame: any) =>{
+            console.log( timestamp , frame ) ; 
             this.renderer.render( this.scene , this.camera.perspectiveCamera );
         }
 
@@ -79,6 +80,3 @@ class XRExperience extends EventEmitter {
 }
 
 export default XRExperience; 
-
-
-// this.renderer.render(this.scene , this.camera.perspectiveCamera);
