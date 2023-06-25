@@ -43,7 +43,7 @@ class XRExperience extends EventEmitter {
             alpha: true,
         });
 
-
+        this.renderer.xr.enabled = true; 
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFShadowMap;
         this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -79,7 +79,7 @@ class XRExperience extends EventEmitter {
             new THREE.MeshBasicMaterial({ color : 0xff0000 })
         );
 
-        this.reticle.matrixAutoUpdate = false;
+        this.reticle.matrixAutoUpdate = false; 
         this.reticle.visible = false;
         this.scene.add(this.reticle);
 
