@@ -70,7 +70,7 @@ class XRExperience extends EventEmitter {
                 // const mesh = new THREE.Mesh(geometry, material);
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 model.scale.y = Math.random() * 2 + 1;
-                this.scene.add(model.clone());
+                this.scene.add(model);
             }
         }
 
