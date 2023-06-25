@@ -56,7 +56,7 @@ class XRExperience extends EventEmitter {
     }
 
     init(){
-
+        this.scene.add( this.resources.items.michelle.scene )
     }
     
     animate(){

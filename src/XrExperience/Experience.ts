@@ -1,5 +1,6 @@
 import AssetsArray, { AssetT } from './Assets';
 import Camera from './Camera';
+import Environment from './Environment';
 import Helper from './Helper';
 import Controllers from './OrbitControlls';
 import Resources from './Resources';
@@ -18,6 +19,7 @@ class Experience{
     camera : Camera ; 
     helper : Helper ; 
     controllers : Controllers ; 
+    environment : Environment ; 
 
     constructor( canvas?: HTMLCanvasElement ){
         if( Experience.instance ){
@@ -35,6 +37,7 @@ class Experience{
                 this.controllers = new Controllers() ; 
                 
                 this.resources.on('ready' , ()=>{
+                    this.environment = new Environment() ; 
                     this.XrExp = new XRExperience() ; 
                 })
 
