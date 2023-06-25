@@ -17,8 +17,8 @@ class Helper{
     }
 
     setHelper(){
-        this.gridHelper = new THREE.GridHelper( 100 , 100 ); 
-        this.axesHelper = new THREE.AxesHelper( 50 ) ; 
+        // this.gridHelper = new THREE.GridHelper( 100 , 100 ); 
+        // this.axesHelper = new THREE.AxesHelper( 50 ) ; 
         this.scene.add( this.gridHelper ) ; 
         this.scene.add( this.axesHelper );
     }
