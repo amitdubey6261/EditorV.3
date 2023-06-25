@@ -92,7 +92,7 @@ class XRExperience extends EventEmitter {
     animate() {
 
         const render = (timeStamp: number, frame: XRFrame) => {
-            // console.warn(timeStamp);
+            console.warn(timeStamp);
 
             if (frame) {
                 const referenceSpace = this.renderer.xr.getReferenceSpace();
