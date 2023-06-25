@@ -39,15 +39,14 @@ class Experience{
                 this.resources.on('ready' , ()=>{
                     this.environment = new Environment() ; 
                     this.XrExp = new XRExperience() ; 
+                    this.XrExp.on('update' , ()=>{
+                        this.update() ; 
+                    })
                 })
 
                 this.sizes.on('resize' , ()=>{
                     this.camera.resize() ; 
                     if( this.XrExp ) this.XrExp.resize() ; 
-                })
-
-                this.XrExp.on('update' , ()=>{
-                    this.update() ; 
                 })
             }
         }
