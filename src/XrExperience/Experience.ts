@@ -34,7 +34,7 @@ class Experience{
                 this.resources = new Resources(AssetsArray) ; 
                 this.camera = new Camera() ; 
                 this.helper = new Helper() ; 
-                this.controllers = new Controllers() ; 
+                this.controllers = new Controllers() ;
                 
                 this.resources.on('ready' , ()=>{
                     this.environment = new Environment() ; 

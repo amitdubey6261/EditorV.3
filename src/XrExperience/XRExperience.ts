@@ -2,11 +2,11 @@ import * as THREE from 'three';
 
 import { EventEmitter } from 'events'
 import { ARButton } from 'three/examples/jsm/webxr/ARButton.js';
+import {TransformControls} from 'three/examples/jsm/controls/TransformControls.js' ; 
 import Experience from './Experience';
 import Camera from './Camera';
 import Resources from './Resources';
 import Sizes from './Sizes';
-import _TransformControls from './TransformControls';
 
 class XRExperience extends EventEmitter {
     experience: Experience;
@@ -20,7 +20,7 @@ class XRExperience extends EventEmitter {
     reticle: THREE.Mesh;
     hitTestSource: any;
     controller: any;
-    transformControl : _TransformControls ; 
+    // tControls : TransformControls ; 
 
 
     constructor() {
@@ -31,12 +31,33 @@ class XRExperience extends EventEmitter {
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
-        this.transformControl = new _TransformControls() ; 
-
 
         this.hitTestSource = null ; 
         this.hitTestSourceRequested = false ;   
+        this.setTControls() ; 
         this.setRenderer();
+    }
+
+    setTControls(){
+        const tControls = new TransformControls( this.camera.perspectiveCamera , this.canvas ); 
+        window.addEventListener('keydown' , (e)=>{
+            switch( e.code ){
+                case 'keyG':
+                    tControls.setMode('translate');
+                    break ; 
+                case 'KeyR':
+                    tControls.setMode('rotate');
+                    break ; 
+                case 'KeyS':
+                    tControls.setMode('scale') ; 
+                    break ; 
+            }
+        })
+
+        const model = this.resources.items.michelle.scene ; 
+        tControls.attach(model)
+        this.scene.add(model)
+        this.scene.add(tControls)
     }
 
     setRenderer() {
@@ -66,7 +87,6 @@ class XRExperience extends EventEmitter {
         const onSelect = () => {
             if (this.reticle.visible) {
                 const model = this.resources.items.michelle.scene ;
-                this.transformControl.control.attach(model) ;  
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 model.scale.y = Math.random() * 2 + 1;
                 this.scene.add(model);
