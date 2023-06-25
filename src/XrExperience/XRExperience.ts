@@ -76,7 +76,11 @@ class XRExperience extends EventEmitter {
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
 
-        document.body.appendChild(ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }));
+        // document.body.appendChild(ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }));
+        const btn = ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }) ; 
+        btn.style.backgroundColor = 'black' ; 
+        btn.style.color = 'white' ;
+        document.body.appendChild(btn) ;  
 
         this.init();
         this.animate();
