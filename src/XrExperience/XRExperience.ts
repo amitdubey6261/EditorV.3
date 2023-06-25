@@ -69,7 +69,7 @@ class XRExperience extends EventEmitter {
                 // const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
                 // const mesh = new THREE.Mesh(geometry, material);
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
-                // mesh.scale.y = Math.random() * 2 + 1;
+                model.scale.y = Math.random() * 2 + 1;
                 this.scene.add(model.clone());
             }
         }
