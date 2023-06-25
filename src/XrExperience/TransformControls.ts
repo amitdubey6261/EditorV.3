@@ -9,7 +9,6 @@ class _TransformControls{
     canvas : HTMLCanvasElement ; 
     currentCamera : THREE.PerspectiveCamera;
     control : TransformControls ;
-    renderer : THREE.WebGLRenderer ;    
 
     constructor(){
         this.experience = new Experience() ; 
@@ -17,7 +16,6 @@ class _TransformControls{
         this.camera = this.experience.camera.perspectiveCamera ; 
         this.currentCamera = this.camera ; 
         this.canvas = this.experience.canvas ;
-        this.renderer = this.experience.XrExp.renderer ;  
 
         this.init() ; 
     }
