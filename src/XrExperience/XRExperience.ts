@@ -6,6 +6,7 @@ import Experience from './Experience';
 import Camera from './Camera';
 import Resources from './Resources';
 import Sizes from './Sizes';
+import _TransformControls from './TransformControls';
 
 class XRExperience extends EventEmitter {
     experience: Experience;
@@ -19,6 +20,7 @@ class XRExperience extends EventEmitter {
     reticle: THREE.Mesh;
     hitTestSource: any;
     controller: any;
+    transformControl : _TransformControls ; 
 
 
     constructor() {
@@ -29,6 +31,7 @@ class XRExperience extends EventEmitter {
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
+        this.transformControl = new _TransformControls() ; 
 
 
         this.hitTestSource = null ; 
@@ -52,8 +55,6 @@ class XRExperience extends EventEmitter {
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
 
-        // console.log( this.resources.items.michelle.scene )
-
         document.body.appendChild(ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }));
 
         this.init();
@@ -62,12 +63,10 @@ class XRExperience extends EventEmitter {
     }
 
     init() {
-        // const geometry = new THREE.CylinderGeometry(0.1, 0.1, 0.2, 32).translate(0, 0.1, 0);
         const onSelect = () => {
             if (this.reticle.visible) {
-                const model = this.resources.items.michelle.scene ; 
-                // const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
-                // const mesh = new THREE.Mesh(geometry, material);
+                const model = this.resources.items.michelle.scene ;
+                this.transformControl.control.attach(model) ;  
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 model.scale.y = Math.random() * 2 + 1;
                 this.scene.add(model);
