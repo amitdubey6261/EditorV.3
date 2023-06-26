@@ -7,6 +7,16 @@
 .experience{
   width: 100vw;
   height: 100vh;
+  position: relative;
+}
+
+.xr-box{
+  width: 4cm;
+  height: 2cm;
+  background-color: yellow;
+  position: absolute;
+  top: 0;
+  z-index: 2; 
 }
 
 .experience-canvas{
