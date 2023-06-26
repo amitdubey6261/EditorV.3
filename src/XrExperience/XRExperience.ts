@@ -111,6 +111,7 @@ class XRExperience extends EventEmitter {
                 group.add(model) ; 
                 group.add(model2) ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
+                this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
                 // model.scale.y = Math.random() * 2 + 1;
                 tControls.attach(model)
                 this.scene.add(model);
