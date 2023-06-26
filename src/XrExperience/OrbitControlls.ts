@@ -31,11 +31,10 @@ class Controllers{
         this.orbitControls = new OrbitControls( this.camera.perspectiveCamera , this.canvas);
         this.orbitControls.enableDamping = true ; 
         this.orbitControls.enableZoom = true ; 
-        this.orbitControls.enableRotate = true ; 
     }
 
     update(){
-        this.orbitControls.update();
+        // this.orbitControls.update();
     }
 }
 
