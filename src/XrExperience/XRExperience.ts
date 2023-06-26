@@ -7,6 +7,7 @@ import Experience from './Experience';
 import Camera from './Camera';
 import Resources from './Resources';
 import Sizes from './Sizes';
+import { mod } from 'three/examples/jsm/nodes/Nodes.js';
 
 class XRExperience extends EventEmitter {
     experience: Experience;
@@ -90,7 +91,7 @@ class XRExperience extends EventEmitter {
     init() {
         const onSelect = () => {
             if (this.reticle.visible) {
-
+                const group = new THREE.Group() ; 
                 const tControls = new TransformControls( this.camera.perspectiveCamera , this.canvas ); 
                 window.addEventListener('keydown' , (e)=>{
                     switch( e.code ){
@@ -107,10 +108,15 @@ class XRExperience extends EventEmitter {
                 })
         
                 const model = this.resources.items.michelle.scene ; 
+                const model2 = this.resources.items.kira.scene ; 
+                group.add(model) ; 
+                group.add(model2) ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 // model.scale.y = Math.random() * 2 + 1;
                 tControls.attach(model)
-                this.scene.add(model)
+                this.scene.add(model);
+                this.scene.add(model2);
+                this.scene.add(group);
                 this.scene.add(tControls)
             }
         }
