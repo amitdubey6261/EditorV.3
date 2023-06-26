@@ -7,7 +7,6 @@ import Experience from './Experience';
 import Camera from './Camera';
 import Resources from './Resources';
 import Sizes from './Sizes';
-import { mod } from 'three/examples/jsm/nodes/Nodes.js';
 
 class XRExperience extends EventEmitter {
     experience: Experience;
