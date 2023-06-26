@@ -108,7 +108,7 @@ class XRExperience extends EventEmitter {
         
                 const model = this.resources.items.michelle.scene ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
-                model.scale.y = Math.random() * 2 + 1;
+                // model.scale.y = Math.random() * 2 + 1;
                 tControls.attach(model)
                 this.scene.add(model)
                 this.scene.add(tControls)
