@@ -67,6 +67,12 @@ class XRExperience extends EventEmitter {
             alpha: true,
         });
 
+        this.renderer.domElement.addEventListener('touchstart' , (e)=>{
+            e.preventDefault();
+            console.log(e);
+            alert('zika');
+        })
+
         this.renderer.xr.enabled = true; 
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -76,7 +82,7 @@ class XRExperience extends EventEmitter {
         this.renderer.setSize(this.sizes.width, this.sizes.height);
         this.renderer.setPixelRatio(this.sizes.pixelRatio);
 
-        const btn = ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] , optionalFeatures : ['dom-overlay'] , domOverlay : { root : document.querySelector('.xr-box') as HTMLElement } }) ; 
+        const btn = ARButton.createButton(this.renderer, { requiredFeatures: ['hit-test'] }) ; 
         btn.style.backgroundColor = 'black' ; 
         btn.style.color = 'white' ;
         document.body.appendChild(btn) ;  
@@ -111,7 +117,6 @@ class XRExperience extends EventEmitter {
                 group.add(model2) ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
-                // model.scale.y = Math.random() * 2 + 1;
                 tControls.attach(model)
                 this.scene.add(model);
                 this.scene.add(model2);
@@ -120,6 +125,7 @@ class XRExperience extends EventEmitter {
             }
         }
 
+    
         this.controller = this.renderer.xr.getController(0);
         this.controller.addEventListener('select', onSelect);
         this.scene.add(this.controller);
@@ -138,7 +144,7 @@ class XRExperience extends EventEmitter {
     animate() {
 
         const render = (timeStamp: number, frame: XRFrame) => {
-            console.warn(timeStamp);
+            if(timeStamp){}
 
             if (frame) {
                 const referenceSpace = this.renderer.xr.getReferenceSpace();
