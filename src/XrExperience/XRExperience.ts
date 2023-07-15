@@ -139,10 +139,10 @@ class XRExperience extends EventEmitter {
                 // group.add(model3) ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
                 // this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
-                tControls.attach(model);
+                // tControls.attach(model);
                 this.scene.add(model);
                 this.scene.add(group);
-                this.scene.add(tControls)
+                // this.scene.add(tControls)
             }
         }
 
