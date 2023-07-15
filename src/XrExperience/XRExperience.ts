@@ -128,19 +128,18 @@ class XRExperience extends EventEmitter {
                     }
                 })
         
-                const model = this.resources.items.jwb ;
-                model.traverse((elem:any)=>{ console.log(elem)})
+                // const model = this.resources.items.jwb ;
 
-                console.log('hello bhaita' , model ) 
+                // console.log('hello bhaita' , model ) 
                 // const model = this.resources.items.jwb ; 
                 // const model2 = this.resources.items.kira.scene ; 
-                group.add(model) ; 
+                group.add(this.model) ; 
                 // group.add(model2) ; 
                 // group.add(model3) ; 
-                this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
+                this.reticle.matrix.decompose(this.model.position, this.model.quaternion, this.model.scale);
                 // this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
                 // tControls.attach(model);
-                this.scene.add(model);
+                this.scene.add(this.model);
                 this.scene.add(group);
                 // this.scene.add(tControls)
             }
