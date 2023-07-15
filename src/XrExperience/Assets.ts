@@ -12,6 +12,12 @@ const AssetsArray : AssetT[] = [
     }
     ,
     {
+        name : "glass", 
+        type : "glbmodel", 
+        path : "/models/jw/glass.glb", 
+    }
+    ,
+    {
         name : "michelle",  
         type : "glbmodel",
         path : "/models/Michelle.glb",
