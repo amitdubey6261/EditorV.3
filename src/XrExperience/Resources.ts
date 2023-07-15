@@ -1,4 +1,4 @@
-import { GLTFLoader , GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js' ; 
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js' ; 
 import { FBXLoader  } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js' ; 
 import { EventEmitter } from 'events';
