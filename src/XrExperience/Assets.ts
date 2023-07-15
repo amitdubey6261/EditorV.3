@@ -23,6 +23,12 @@ const AssetsArray : AssetT[] = [
         type : "fbxmodel" , 
         path : "/models/jw/BlueLabel_Lowpoly_fbx.fbx" , 
     }
+    ,
+    {
+        name : "b_color" , 
+        type : "texture" , 
+        path : "/models/jw/lambert1_Base_color_1001.png" , 
+    }
 ]
 
 export default AssetsArray ; 

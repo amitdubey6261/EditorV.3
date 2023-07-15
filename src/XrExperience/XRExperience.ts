@@ -20,6 +20,7 @@ class XRExperience extends EventEmitter {
     reticle: THREE.Mesh;
     hitTestSource: any;
     controller: any;
+    model : any ; 
     // tControls : TransformControls ; 
 
 
@@ -33,7 +34,8 @@ class XRExperience extends EventEmitter {
         this.canvas = this.experience.canvas;
 
         this.hitTestSource = null ; 
-        this.hitTestSourceRequested = false ;   
+        this.hitTestSourceRequested = false ;  
+        this. prepareModel() ; 
         // this.setTControls() ; 
         this.setRenderer();
     }
@@ -92,6 +94,16 @@ class XRExperience extends EventEmitter {
 
     }
 
+    prepareModel(){
+        const texture = this.resources.items.b_color ; 
+        this.model = this.resources.items.jwb ; 
+        this.model.traverse((elem:any)=>{
+            if(elem.isMesh){
+                elem.material.map = texture ; 
+            }
+        })
+    }
+
     init() {
         const onSelect = () => {
             if (this.reticle.visible) {
@@ -112,6 +124,8 @@ class XRExperience extends EventEmitter {
                 })
         
                 const model = this.resources.items.jwb ;
+                model.traverse((elem:any)=>{ console.log(elem)})
+
                 console.log('hello bhaita' , model ) 
                 // const model = this.resources.items.jwb ; 
                 // const model2 = this.resources.items.kira.scene ; 

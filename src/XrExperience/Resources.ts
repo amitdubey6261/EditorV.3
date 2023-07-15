@@ -4,11 +4,13 @@ import { DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js' ;
 import { EventEmitter } from 'events';
 import { AssetT } from './Assets';
 import Experience from './Experience';
+import * as THREE from 'three'
 
 interface loadersT{
     gltfLoader : GLTFLoader , 
     dracoLoader : DRACOLoader , 
     fbxLoader : FBXLoader ,  
+    textureLoader : THREE.TextureLoader , 
 }
 
 export default class Resources extends EventEmitter{
@@ -38,7 +40,8 @@ export default class Resources extends EventEmitter{
         this.loaders = {
             gltfLoader : new GLTFLoader() , 
             dracoLoader : new DRACOLoader() , 
-            fbxLoader : new FBXLoader()
+            fbxLoader : new FBXLoader() , 
+            textureLoader : new THREE.TextureLoader(),  
         }
 
         this.loaders.dracoLoader.setDecoderPath("/draco/") ; 
@@ -57,6 +60,11 @@ export default class Resources extends EventEmitter{
                     this.singleAssetLoaded(asset , file ) ; 
                 })
             }
+            if( asset.type == 'texture' ){
+                this.loaders.textureLoader.load(asset.path , ( file )=>{
+                    this.singleAssetLoaded( asset , file ) ; 
+                })
+            }   
         }
     }
 
