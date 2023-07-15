@@ -54,7 +54,7 @@ class XRExperience extends EventEmitter {
             }
         })
 
-        const model = this.resources.items.michelle.scene ; 
+        const model = this.resources.items.jwb ; 
         tControls.attach(model)
         this.scene.add(model)
         this.scene.add(tControls)
@@ -111,15 +111,17 @@ class XRExperience extends EventEmitter {
                     }
                 })
         
-                const model = this.resources.items.michelle.scene ; 
-                const model2 = this.resources.items.kira.scene ; 
+                const model = this.resources.items.jwb ;
+                console.log('hello bhaita' , model ) 
+                // const model = this.resources.items.jwb ; 
+                // const model2 = this.resources.items.kira.scene ; 
                 group.add(model) ; 
-                group.add(model2) ; 
+                // group.add(model2) ; 
+                // group.add(model3) ; 
                 this.reticle.matrix.decompose(model.position, model.quaternion, model.scale);
-                this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
-                tControls.attach(model)
+                // this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
+                tControls.attach(model);
                 this.scene.add(model);
-                this.scene.add(model2);
                 this.scene.add(group);
                 this.scene.add(tControls)
             }

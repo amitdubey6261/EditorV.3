@@ -17,6 +17,12 @@ const AssetsArray : AssetT[] = [
         path : "/models/Michelle.glb",
 
     }
+    ,
+    {
+        name : "jwb" , 
+        type : "fbxmodel" , 
+        path : "/models/jw/BlueLabel_Lowpoly_fbx.fbx" , 
+    }
 ]
 
 export default AssetsArray ; 
