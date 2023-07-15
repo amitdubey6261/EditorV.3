@@ -101,6 +101,7 @@ class XRExperience extends EventEmitter {
         this.model = this.resources.items.jwb ; 
         this.model.traverse((elem:any)=>{
             if(elem.isMesh){
+                elem.alpha = 0 ; 
                 elem.material.map = texture ; 
                 elem.material.roughnessMap = texture2 ;
                 elem.material.metalnessMap = texture3 ;
