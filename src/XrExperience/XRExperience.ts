@@ -95,11 +95,15 @@ class XRExperience extends EventEmitter {
     }
 
     prepareModel(){
-        const texture = this.resources.items.b_color ; 
+        const texture = this.resources.items.b_color ;
+        const texture2 = this.resources.items.rough ;  
+        const texture3 = this.resources.items.metallic ;  
         this.model = this.resources.items.jwb ; 
         this.model.traverse((elem:any)=>{
             if(elem.isMesh){
                 elem.material.map = texture ; 
+                elem.material.roughnessMap = texture2 ;
+                elem.material.metalnessMap = texture3 ;
             }
         })
     }
