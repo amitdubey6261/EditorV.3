@@ -157,7 +157,7 @@ class XRExperience extends EventEmitter {
         this.scene.add(this.controller);
         this.reticle = new THREE.Mesh(
             new THREE.RingGeometry(0.15, 0.2, 32).rotateX(- Math.PI / 2),
-            new THREE.MeshStandardMaterial({ color : 0xffffff , opacity : 0.5 })
+            new THREE.MeshStandardMaterial({ color : 0xffffff , wireframe: true })
         );
 
         this.reticle.matrixAutoUpdate = false; 
