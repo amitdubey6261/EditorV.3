@@ -112,7 +112,7 @@ class XRExperience extends EventEmitter {
         // const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
         // const clip6 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.005') ; 
 
-        const action2 = this.mixer.clipAction(clip2);
+        // const action2 = this.mixer.clipAction(clip2);
         const action3 = this.mixer.clipAction(clip3);
 
         // action2.play() ; //bottle animation 
