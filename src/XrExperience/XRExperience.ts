@@ -108,7 +108,7 @@ class XRExperience extends EventEmitter {
         const clip2 = THREE.AnimationClip.findByName(this.animations , 'polySurface13_lowAction') ; 
         const clip3 = THREE.AnimationClip.findByName(this.animations , 'ArmatureAction') ; 
         // const clip4 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.001') ; 
-        // const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
+        const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
         // const clip6 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.005') ; 
 
         const action2 = this.mixer.clipAction(clip2);
