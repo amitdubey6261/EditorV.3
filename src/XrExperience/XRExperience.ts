@@ -143,6 +143,7 @@ class XRExperience extends EventEmitter {
                 group.add(this.model2) ; 
                 // group.add(model3) ; 
                 this.reticle.matrix.decompose(this.model.position, this.model.quaternion, this.model.scale);
+                this.reticle.matrix.decompose(this.model2.position, this.model2.quaternion, this.model2.scale);
                 // tControls.attach(model);
                 this.scene.add(this.model);
                 this.scene.add(this.model2);
@@ -208,10 +209,6 @@ class XRExperience extends EventEmitter {
                         }
                     }
                 }
-            }
-
-            if( this.model2 && this.model ){
-                this.model2.position.copy(this.model.position);
             }
 
             let mixerUpdateDelta = this.clock.getDelta();
