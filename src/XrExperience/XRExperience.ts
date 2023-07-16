@@ -44,7 +44,6 @@ class XRExperience extends EventEmitter {
         this.hitTestSourceRequested = false ;  
         this.clock = new THREE.Clock() ;
         this. prepareModel() ; 
-        // this.setTControls() ; 
         this.setRenderer();
     }
 
@@ -101,16 +100,17 @@ class XRExperience extends EventEmitter {
     }
 
     prepareModel(){
-        const orimodel = this.resources.items.test ; 
-        this.model = this.resources.items.test.scene ;   
+        const orimodel = this.resources.items.newBox ; 
+        this.model = this.resources.items.newBox.scene ;   
         this.animations = orimodel.animations ;
+        console.log(this.animations)
 
         this.mixer = new THREE.AnimationMixer(this.model) ; 
-        const clip3 = THREE.AnimationClip.findByName(this.animations , 'ArmatureAction') ; 
-        const action3 = this.mixer.clipAction(clip3);
-        action3.setLoop(THREE.LoopOnce);
+        const clip3 = THREE.AnimationClip.findByName(this.animations , 'FAction') ;
+        const action = this.mixer.clipAction(clip3) ; 
+        action.setLoop(THREE.LoopOnce);
+        action.play()
 
-        action3.play() ; //crdbrrd animation .
     }
 
     init() {
@@ -174,8 +174,8 @@ class XRExperience extends EventEmitter {
         const points = 
         [
             [0 , 0 , 0 ] , 
-            [ 0 , .3 , 0 ] , 
-            [ .5  , .3 , 0 ] , 
+            [ 0 , .6 , 0 ] , 
+            [ .5  , .6 , 0 ] , 
             [ .5 , 0 ,  0 ] , 
         ]
 
