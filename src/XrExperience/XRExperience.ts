@@ -75,8 +75,6 @@ class XRExperience extends EventEmitter {
 
         this.renderer.domElement.addEventListener('touchstart' , (e)=>{
             e.preventDefault();
-            console.log(e);
-            alert('zika');
         })
 
         this.renderer.xr.enabled = true; 
