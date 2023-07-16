@@ -6,6 +6,12 @@ export interface AssetT{
 
 const AssetsArray : AssetT[] = [
     {
+        name : "test", 
+        type : "glbmodel", 
+        path : "/models/tetst.glb", 
+    }
+    ,
+    {
         name : "nb", 
         type : "glbmodel", 
         path : "/models/nb.glb", 

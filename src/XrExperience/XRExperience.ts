@@ -21,6 +21,9 @@ class XRExperience extends EventEmitter {
     hitTestSource: any;
     controller: any;
     model : any ; 
+    animations : any ; 
+    mixer : any ; 
+    clock : THREE.Clock ; 
     // tControls : TransformControls ; 
 
 
@@ -35,6 +38,7 @@ class XRExperience extends EventEmitter {
 
         this.hitTestSource = null ; 
         this.hitTestSourceRequested = false ;  
+        this.clock = new THREE.Clock() ;
         this. prepareModel() ; 
         // this.setTControls() ; 
         this.setRenderer();
@@ -95,9 +99,37 @@ class XRExperience extends EventEmitter {
     }
 
     prepareModel(){
-        this.model = this.resources.items.nb.scene ; 
-        this.scene.add(this.model);
+        const orimodel = this.resources.items.test ; 
+        this.model = this.resources.items.test.scene ; 
+        this.animations = orimodel.animations ;
 
+        this.mixer = new THREE.AnimationMixer(this.model) ; 
+        const clip1 = THREE.AnimationClip.findByName(this.animations , 'low_polyAction') ; 
+        const clip2 = THREE.AnimationClip.findByName(this.animations , 'polySurface13_lowAction') ; 
+        const clip3 = THREE.AnimationClip.findByName(this.animations , 'ArmatureAction') ; 
+        const clip4 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.001') ; 
+        const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
+        const clip6 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.005') ; 
+
+        const action1 = this.mixer.clipAction(clip1);
+        const action2 = this.mixer.clipAction(clip2);
+        const action3 = this.mixer.clipAction(clip3);
+        const action4 = this.mixer.clipAction(clip4);
+        const action5 = this.mixer.clipAction(clip5);
+        const action6 = this.mixer.clipAction(clip6);
+
+        // action2.setLoop(THREE.LoopOnce) ; 
+        // action3.setLoop(THREE.LoopOnce) ; 
+
+        // action1.play() ; 
+        action2.play() ; //bottle animation
+        action3.play() ; //crdbrrd animation .
+        // action4.play() ; 
+        // action5.play() ; 
+        // action6.play() ; 
+
+        // console.log(this.animations);
+        // console.log( this.model ) ; 
     }
 
     init() {
@@ -194,6 +226,12 @@ class XRExperience extends EventEmitter {
                         }
                     }
                 }
+            }
+
+            let mixerUpdateDelta = this.clock.getDelta();
+
+            if( this.mixer ){
+                this.mixer.update(mixerUpdateDelta);
             }
 
             this.renderer.render(this.scene, this.camera.perspectiveCamera);
