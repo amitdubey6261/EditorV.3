@@ -183,15 +183,16 @@ class XRExperience extends EventEmitter {
             const point:number[] = points.shift() as number[] ; 
 
             gsap.to(this.animto.position , {
-                duration : 5 , 
+                duration : 3 , 
                 x : point[0] , 
                 y : point[1] , 
                 z : point[2] ,
+                onComplete : ()=>{ 
+                    if( points.length > 0 ){
+                        loopit();
+                    }
+                }
             })
-    
-            if( points.length > 0 ){
-                loopit();
-            }
         }
 
         loopit()
