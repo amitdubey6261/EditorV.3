@@ -24,6 +24,7 @@ class XRExperience extends EventEmitter {
     animations : any ; 
     mixer : any ; 
     clock : THREE.Clock ; 
+    model2 : any ; 
     // tControls : TransformControls ; 
 
 
@@ -137,15 +138,14 @@ class XRExperience extends EventEmitter {
                     }
                 })
         
-                const model2 = this.resources.items.jwp.scene ; 
+                this.model2 = this.resources.items.jwp.scene ; 
                 group.add(this.model) ; 
-                group.add(model2) ; 
+                group.add(this.model2) ; 
                 // group.add(model3) ; 
                 this.reticle.matrix.decompose(this.model.position, this.model.quaternion, this.model.scale);
-                this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
                 // tControls.attach(model);
                 this.scene.add(this.model);
-                this.scene.add(model2);
+                this.scene.add(this.model2);
                 this.scene.add(group);
             }
         }
@@ -210,6 +210,10 @@ class XRExperience extends EventEmitter {
                 }
             }
 
+            if( this.model2 && this.model ){
+                this.model2.position.copy(this.model.position);
+            }
+
             let mixerUpdateDelta = this.clock.getDelta();
 
             if( this.mixer ){
@@ -219,6 +223,7 @@ class XRExperience extends EventEmitter {
             this.renderer.render(this.scene, this.camera.perspectiveCamera);
             this.emit('update');
         }
+
 
         this.renderer.setAnimationLoop(render);
     }
