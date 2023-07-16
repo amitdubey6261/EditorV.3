@@ -16,6 +16,12 @@ const AssetsArray : AssetT[] = [
         type : "glbmodel", 
         path : "/models/jwp.glb", 
     }
+    ,
+    {
+        name : 'bottle' , 
+        type : "glbmodel",
+        path : "/models/bottle.glb"
+    }
 ]
 
 export default AssetsArray ; 

@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { EventEmitter } from 'events'
 import { ARButton } from 'three/examples/jsm/webxr/ARButton.js';
 import {TransformControls} from 'three/examples/jsm/controls/TransformControls.js' ; 
+import { gsap } from 'gsap';
 import Experience from './Experience';
 import Camera from './Camera';
 import Resources from './Resources';
@@ -25,6 +26,8 @@ class XRExperience extends EventEmitter {
     mixer : any ; 
     clock : THREE.Clock ; 
     model2 : any ; 
+    bottle : any ; 
+    animto : THREE.Mesh ; 
     // tControls : TransformControls ; 
 
 
@@ -99,23 +102,14 @@ class XRExperience extends EventEmitter {
 
     prepareModel(){
         const orimodel = this.resources.items.test ; 
-        this.model = this.resources.items.test.scene ;
-        this.model.scale.set(0.001, 0.001, 0.001);
-        console.log(this.model) 
+        this.model = this.resources.items.test.scene ;   
         this.animations = orimodel.animations ;
 
         this.mixer = new THREE.AnimationMixer(this.model) ; 
-        // const clip1 = THREE.AnimationClip.findByName(this.animations , 'low_polyAction') ; 
-        // const clip2 = THREE.AnimationClip.findByName(this.animations , 'polySurface13_lowAction') ; 
         const clip3 = THREE.AnimationClip.findByName(this.animations , 'ArmatureAction') ; 
-        // const clip4 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.001') ; 
-        // const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
-        // const clip6 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.005') ; 
-
-        // const action2 = this.mixer.clipAction(clip2);
         const action3 = this.mixer.clipAction(clip3);
+        action3.setLoop(THREE.LoopOnce);
 
-        // action2.play() ; //bottle animation 
         action3.play() ; //crdbrrd animation .
     }
 
@@ -139,14 +133,23 @@ class XRExperience extends EventEmitter {
                 })
         
                 this.model2 = this.resources.items.jwp.scene ; 
-                group.add(this.model) ; 
+                this.bottle = this.resources.items.bottle.scene ; 
+                this.animto = this.resources.items.bottle.scene.children[0] , 
+                console.log(this.animto , "hi");
+                this.bottle.position.copy(this.model.position) ; 
+                this.animatoBottle();
+
+                group.add(this.model)  ; 
                 group.add(this.model2) ; 
+                group.add(this.bottle) ; 
                 // group.add(model3) ; 
                 this.reticle.matrix.decompose(this.model.position, this.model.quaternion, this.model.scale);
                 this.reticle.matrix.decompose(this.model2.position, this.model2.quaternion, this.model2.scale);
+                this.reticle.matrix.decompose(this.bottle.position, this.bottle.quaternion, this.bottle.scale);
                 // tControls.attach(model);
                 this.scene.add(this.model);
                 this.scene.add(this.model2);
+                this.scene.add(this.bottle);
                 this.scene.add(group);
             }
         }
@@ -166,6 +169,33 @@ class XRExperience extends EventEmitter {
 
 
     }
+
+    animatoBottle(){
+        const points = 
+        [
+            [0 , 0 , 0 ] , 
+            [ 0 , .3 , 0 ] , 
+            [ .5  , .3 , 0 ] , 
+            [ .5 , 0 ,  0 ] , 
+        ]
+
+        const loopit = () =>{
+            const point:number[] = points.shift() as number[] ; 
+
+            gsap.to(this.animto.position , {
+                duration : 5 , 
+                x : point[0] , 
+                y : point[1] , 
+                z : point[2] ,
+            })
+    
+            if( points.length > 0 ){
+                loopit();
+            }
+        }
+
+        loopit()
+    };
 
     animate() {
 
