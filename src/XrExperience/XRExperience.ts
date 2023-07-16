@@ -137,20 +137,16 @@ class XRExperience extends EventEmitter {
                     }
                 })
         
-                // const model = this.resources.items.jwb ;
-
-                // console.log('hello bhaita' , model ) 
-                // const model = this.resources.items.jwb ; 
-                // const model2 = this.resources.items.kira.scene ; 
+                const model2 = this.resources.items.jwp.scene ; 
                 group.add(this.model) ; 
-                // group.add(model2) ; 
+                group.add(model2) ; 
                 // group.add(model3) ; 
                 this.reticle.matrix.decompose(this.model.position, this.model.quaternion, this.model.scale);
-                // this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
+                this.reticle.matrix.decompose(model2.position, model2.quaternion, model2.scale);
                 // tControls.attach(model);
                 this.scene.add(this.model);
+                this.scene.add(model2);
                 this.scene.add(group);
-                // this.scene.add(tControls)
             }
         }
 
