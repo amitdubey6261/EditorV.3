@@ -106,7 +106,7 @@ class XRExperience extends EventEmitter {
 
         this.mixer = new THREE.AnimationMixer(this.model) ; 
         // const clip1 = THREE.AnimationClip.findByName(this.animations , 'low_polyAction') ; 
-        const clip2 = THREE.AnimationClip.findByName(this.animations , 'polySurface13_lowAction') ; 
+        // const clip2 = THREE.AnimationClip.findByName(this.animations , 'polySurface13_lowAction') ; 
         const clip3 = THREE.AnimationClip.findByName(this.animations , 'ArmatureAction') ; 
         // const clip4 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.001') ; 
         // const clip5 = THREE.AnimationClip.findByName(this.animations , 'jwnAction.004') ; 
@@ -115,7 +115,7 @@ class XRExperience extends EventEmitter {
         const action2 = this.mixer.clipAction(clip2);
         const action3 = this.mixer.clipAction(clip3);
 
-        action2.play() ; //bottle animation
+        // action2.play() ; //bottle animation 
         action3.play() ; //crdbrrd animation .
     }
 
