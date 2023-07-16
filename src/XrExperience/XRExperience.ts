@@ -100,7 +100,9 @@ class XRExperience extends EventEmitter {
 
     prepareModel(){
         const orimodel = this.resources.items.test ; 
-        this.model = this.resources.items.test.scene ; 
+        this.model = this.resources.items.test.scene ;
+        this.model.scale.set(0.001, 0.001, 0.001);
+        console.log(this.model) 
         this.animations = orimodel.animations ;
 
         this.mixer = new THREE.AnimationMixer(this.model) ; 
